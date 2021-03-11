@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .div-a {
+            float: left;
+            width: 49%;
+        }
+
+        .div-b {
+            float: left;
+            width: 49%;
+        }
+    </style>
+</head>
+<body>
+<div>
+
+    <form method="post" action="/up_photo" enctype="multipart/form-data">
+        <div class="div-a">
+            <div class="inner">
+                <img id="img1" style="width: 500px; height: 500px" src={{ file_name }}/>
+            </div>
+            <input type="file"  size="30" name="photo" id="fileupload" style="align-content: center"/>
+        </div>
+        {#        <input type="file" size="30" name="photo" id="fileupload"/>#}
+        <div class="div-b">
+            <div class="inner">
+                <img id="img2" style="width: 500px; height: 500px;" src={{ new_face }}/>
+            </div>
+            <input type="submit" value="人脸识别" class="button-new" style="align-content: center"/>
+            {{ labels }}
+        </div>
+        {#        <input type="submit" value="人脸识别" class="button-new" style="margin-top:15px;"/>#}
+
+    </form>
+</div>
+</body>
+
+<script src="static/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(function () {
+            $("#fileupload").change(function () {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("#img1").attr("src", e.target.result);
+                }
+
+                reader.readAsDataURL($(this)[0].files[0]);
+            })
+
+        });
+    })
+</script>
+</html>
